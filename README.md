@@ -11,6 +11,8 @@
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6.svg?&style=for-the-badge&logo=CSS3&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4479A1.svg?&style=for-the-badge&logo=PostgreSQL&logoColor=white)
+![SQLite](https://img.shields.io/badge/sqlite-%2307405e.svg?style=for-the-badge&logo=sqlite&logoColor=white)
+![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
 
 ### Blog
 [![Velog](https://velog.io/favicon.ico)](https://velog.io/@dnwls4659)
