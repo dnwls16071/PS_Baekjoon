@@ -1,6 +1,6 @@
 # 오늘도 서준이는 선택 정렬 수업 조교를 하고 있다. 아빠가 수업한 내용을 학생들이 잘 이해했는지 문제를 통해서 확인해보자.
 #
-# N개의 서로 다른 양의 정수가 저장된 배열 A가 있다. 선택 정렬로 배열 A를 오름차순 정렬할 경우 K 번째 교환되는 수를 구하자.
+# N개의 서로 다른 양의 정수가 저장된 배열 A가 있다. 선택 정렬로 배열 A를 오름차순 정렬할 경우 K 번 교환이 발생한 직후의 배열 A를 출력해 보자.
 #
 # N이 매우 커서 시간 초과를 고민하고 있는 우리 서준이를 도와주자.
 #
@@ -11,6 +11,7 @@
 #         A[1..last]중 가장 큰 수 A[i]를 찾는다
 #         if (last != i) then A[last] <-> A[i]  # last와 i가 서로 다르면 A[last]와 A[i]를 교환
 #     }
+# }
 
 import sys
 input = sys.stdin.readline
@@ -30,12 +31,12 @@ for i in range(N-1, -1, -1):
     # 2, 3
     if A[i] != B[i]:
         temp = [A[i], B[i]]
-        # 2, 0 = 0, 2(인덱싱)
+        # 2, 3 → 3, 2
         A[i], A[dic[B[i]]] = A[dic[B[i]]], A[i]
         dic[temp[0]], dic[temp[1]] = dic[temp[1]], dic[temp[0]]
         cnt += 1
     if K == cnt:
-        print(*temp)
+        print(*A)
         sys.exit(0)
 else:
     print(-1)
