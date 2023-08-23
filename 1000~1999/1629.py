@@ -5,16 +5,16 @@ input = sys.stdin.readline
 
 A, B, C = map(int, input().strip().split())
 
-def power(a, b, m):
+def power(a, b, c):
     if b == 0:
         return 1
     elif b == 1:
-        return a % m
+        return a % c
 
-    tmp = power(a, b//2, m)
+    temp = power(a, b//2, c)
     if b % 2 == 0:
-        return (tmp * tmp) % m
+        return temp * temp % c
     else:
-        return (tmp * tmp * a) % m
+        return temp * temp * a % c
 
 print(power(A, B, C))
