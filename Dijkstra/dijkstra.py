@@ -32,7 +32,7 @@ def get_smallest_node():
     return index
 
 def dijkstra(start):
-	# 시작 노드에 대해서 초기화
+    # 시작 노드에 대해서 초기화
     distance[start] = 0
     visited[start] = True
     for j in graph[start]:
@@ -92,7 +92,7 @@ def dijkstra(start):
             continue
         # 현재 노드와 연결된 다른 인접한 노드들을 확인
         for i in graph[now]:
-        	# graph의 정보 주의하자!
+            # graph의 정보 주의하자!
             # graph[a] = (b, c)	→ a에서 b로 가는 비용이 c다.
             cost = dist + i[1]
             # 현재 노드를 거쳐서 다른 노드로 이동하는 거리가 더 짧은 경우
