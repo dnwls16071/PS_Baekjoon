@@ -1,26 +1,44 @@
-# 151은 소수이면서 동시에 팰린드롬이기 때문에 소수인 팰린드롬이다. 팰린드롬이란 앞으로 읽어나 뒤로 읽으나 같은 수를 말한다. 예를 들어 1234는 앞으로 읽으면 1234지만, 뒤로 읽으면 4321이 되고 이 두 수가 다르기 때문에 팰린드롬이 아니다. 두 정수 a, b가 주어졌을 때, a이상 b이하인 소수인 팰린드롬을 모두 구하는 프로그램을 작성하시오.
+# 월드컵 축구의 응원을 위한 모임에서 회장을 선출하려고 한다. 이 모임은 만들어진지 얼마 되지 않았기 때문에 회원 사이에 서로 모르는 사람도 있지만, 몇 사람을 통하면 모두가 서로 알 수 있다. 각 회원은 다른 회원들과 가까운 정도에 따라 점수를 받게 된다.
+#
+# 예를 들어 어느 회원이 다른 모든 회원과 친구이면, 이 회원의 점수는 1점이다. 어느 회원의 점수가 2점이면, 다른 모든 회원이 친구이거나 친구의 친구임을 말한다. 또한 어느 회원의 점수가 3점이면, 다른 모든 회원이 친구이거나, 친구의 친구이거나, 친구의 친구의 친구임을 말한다.
+#
+# 4점, 5점 등은 같은 방법으로 정해진다. 각 회원의 점수를 정할 때 주의할 점은 어떤 두 회원이 친구사이이면서 동시에 친구의 친구사이이면, 이 두사람은 친구사이라고 본다.
+#
+# 회장은 회원들 중에서 점수가 가장 작은 사람이 된다. 회장의 점수와 회장이 될 수 있는 모든 사람을 찾는 프로그램을 작성하시오.
 
 import sys
 input = sys.stdin.readline
+INF = int(1e9)
 
-def palindrome(x):
-    x = str(x)
-    if x == x[::-1]:
-        return True
-    return False
+N = int(input())
+graph = [[INF] * (N+1) for _ in range(N+1)]
+while True:
+    a, b = map(int, input().strip().split())
+    if a == -1 and b == -1:
+        break
+    graph[a][b] = 1
+    graph[b][a] = 1
 
-A, B = map(int, input().strip().split())
-if B > 10000000:
-    B = 10000000
-arr = [True] * (B+1)
-arr[0] = False
-arr[1] = False
-for i in range(2, B+1):
-    if arr[i]:
-        for j in range(i*i, B+1, i):
-            arr[j] = False
+for a in range(1, N+1):
+    for b in range(1, N+1):
+        if a == b:
+            graph[a][b] = 0
 
-for i in range(A, B+1):
-    if arr[i] and palindrome(i):
-        print(i)
-print(-1)
+for k in range(1, N+1):
+    for a in range(1, N+1):
+        for b in range(1, N+1):
+            if graph[a][b] > graph[a][k] + graph[k][b]:
+                graph[a][b] = graph[a][k] + graph[k][b]
+
+lst = []
+for i in range(1, N+1):
+    lst.append(max(graph[i][1:]))
+
+# 점수가 가장 낮은 사람이 회장 후보로 선출
+min_score = min(lst)
+answer = []
+print(min_score, lst.count(min_score))
+for idx, val in enumerate(lst):
+    if val == min_score:
+        answer.append(idx+1)
+print(*answer)
