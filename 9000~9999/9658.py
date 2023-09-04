@@ -9,20 +9,8 @@ input = sys.stdin.readline
 
 N = int(input())
 
-dp = [0] * 1001
-dp[1] = 0   # 상근이가 이기는 경우를 1, 창영이가 이기는 경우를 0으로 표시해줌
-dp[3] = 0
-dp[4] = 1
-if N >= 5:
-    for i in range(5, N+1):
-        if dp[i-1]:
-            dp[i] = 1
-        if dp[i-3]:
-            dp[i] = 1
-        if not dp[i-4]:
-            dp[i] = 1
-
-if dp[N]:
-    print("SK")
-else:
+temp = N % 7
+if temp == 1 or temp == 3:
     print("CY")
+else:
+    print("SK")
